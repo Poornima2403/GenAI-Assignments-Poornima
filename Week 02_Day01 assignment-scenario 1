@@ -1,0 +1,98 @@
+Chatgpt-Scenario_ Search functionality
+Prompt:
+Context
+Test the search functionality of a veeva vault RIM search functionality to search an application 
+
+Instructions
+[Mandatory] Refer Veeva vault RIM application 
+[Strict] generate positive, negative scenarios
+[strict] Search for application submitted for  United states Lead Market
+[nice to have] Include any other dependent fields required to perform the search
+[STRICT] Follow GXP standards, ALCOA+ principles, 21CFR PArt 11
+
+Example
+Verify a valid RIM user searches for application submitted for a product <product name>
+
+Persona
+Consider RIM user as following RAM, CMC, Viewer, System admin
+
+Output
+Test Scenario ID| Test Scenario Description|Test Case ID|Test Case description|Step NO|Step Description|Test data|Expected Result
+
+Tone
+Professional, GXP Validated environment
+
+Response
+Below are GxP-compliant test scenarios for validating the Veeva Vault RIM Application Search functionality for Applications submitted to the United States Lead Market. The scenarios cover positive, negative, security, data integrity, ALCOA+, and 21 CFR Part 11 considerations and are applicable for RAM, CMC, Viewer, and System Admin roles.
+Test Scenario ID|Test Scenario Description|Test Case ID|Test Case Description|Step No|Step Description|Test Data|Expected Result
+RIM-SRH-US-001|Verify RAM user searches application using Application Number|TC-US-001|Verify successful search using valid Application Number|1|Login as RAM user|Valid RAM credentials|User logged in successfully
+RIM-SRH-US-001|Verify RAM user searches application using Application Number|TC-US-001|Verify successful search using valid Application Number|2|Navigate to Application Search page|N/A|Application search page displayed
+RIM-SRH-US-001|Verify RAM user searches application using Application Number|TC-US-001|Verify successful search using valid Application Number|3|Enter valid Application Number and execute search|US NDA-123456|Application matching entered number is displayed
+RIM-SRH-US-001|Verify RAM user searches application using Application Number|TC-US-001|Verify successful search using valid Application Number|4|Open application record|US NDA-123456|Correct application details displayed
+RIM-SRH-US-002|Verify search using Product Name|TC-US-002|Verify user can search application by Product Name|1|Navigate to Application Search|N/A|Search page displayed
+RIM-SRH-US-002|Verify search using Product Name|TC-US-002|Verify user can search application by Product Name|2|Enter Product Name and execute search|Product ABC|Associated US application records displayed
+RIM-SRH-US-003|Verify search using Lead Market filter|TC-US-003|Verify search returns only United States applications|1|Navigate to search page|N/A|Search page displayed
+RIM-SRH-US-003|Verify search using Lead Market filter|TC-US-003|Verify search returns only United States applications|2|Select Lead Market filter|United States|Filter applied successfully
+RIM-SRH-US-003|Verify search using Lead Market filter|TC-US-003|Verify search returns only United States applications|3|Execute search|N/A|Only applications with Lead Market=United States displayed
+RIM-SRH-US-004|Verify search using Application Type|TC-US-004|Verify search using NDA application type|1|Enter Application Type filter|NDA|Filter accepted
+RIM-SRH-US-004|Verify search using Application Type|TC-US-004|Verify search using NDA application type|2|Execute search|NDA|Only NDA applications displayed
+RIM-SRH-US-005|Verify search using Product Name and Lead Market combination|TC-US-005|Verify multi-criteria search|1|Enter Product Name|Product ABC|Field accepts value
+RIM-SRH-US-005|Verify search using Product Name and Lead Market combination|TC-US-005|Verify multi-criteria search|2|Select Lead Market|United States|Field populated
+RIM-SRH-US-005|Verify search using Product Name and Lead Market combination|TC-US-005|Verify multi-criteria search|3|Execute search|Product ABC + US|Matching records displayed
+RIM-SRH-US-006|Verify search using Submission Status|TC-US-006|Verify search for Submitted applications|1|Select Submission Status filter|Submitted|Filter accepted
+RIM-SRH-US-006|Verify search using Submission Status|TC-US-006|Verify search for Submitted applications|2|Execute search|Submitted|Only submitted applications displayed
+RIM-SRH-US-007|Verify search using Regulatory Objective|TC-US-007|Verify application retrieval through Regulatory Objective|1|Enter Regulatory Objective|Initial Marketing Authorization|Valid results displayed
+RIM-SRH-US-008|Verify search using Applicant Organization|TC-US-008|Verify search by Applicant Organization|1|Enter Applicant Organization|Sponsor XYZ|Matching applications displayed
+RIM-SRH-US-009|Verify search using Submission Date range|TC-US-009|Verify search within valid date range|1|Enter Start Date|01-Jan-2025|Accepted
+RIM-SRH-US-009|Verify search using Submission Date range|TC-US-009|Verify search within valid date range|2|Enter End Date|31-Dec-2025|Accepted
+RIM-SRH-US-009|Verify search using Submission Date range|TC-US-009|Verify search within valid date range|3|Execute search|2025 Date Range|Applications submitted during selected period displayed
+RIM-SRH-US-010|Verify search using Application Owner|TC-US-010|Verify search by Application Owner|1|Enter Application Owner|John Smith|Matching application records displayed
+RIM-SRH-US-011|Verify Viewer role can search authorized application records|TC-US-011|Verify Viewer search access|1|Login as Viewer|Viewer credentials|Login successful
+RIM-SRH-US-011|Verify Viewer role can search authorized application records|TC-US-011|Verify Viewer search access|2|Search application|US NDA-123456|Application visible based on access permissions
+RIM-SRH-US-012|Verify CMC role searches application records|TC-US-012|Verify CMC access to application search|1|Login as CMC user|CMC credentials|Login successful
+RIM-SRH-US-012|Verify CMC role searches application records|TC-US-012|Verify CMC access to application search|2|Search application|Product ABC|Authorized records displayed
+RIM-SRH-US-013|Verify System Admin searches all application records|TC-US-013|Verify System Admin search capability|1|Login as System Admin|Admin credentials|Login successful
+RIM-SRH-US-013|Verify System Admin searches all application records|TC-US-013|Verify System Admin search capability|2|Search using broad criteria|Lead Market=United States|All applicable records displayed
+RIM-SRH-US-014|Verify search with invalid Application Number|TC-US-014|Verify no records returned for invalid number|1|Enter invalid Application Number|US NDA-99999999|No matching records displayed
+RIM-SRH-US-015|Verify search with non-existing Product Name|TC-US-015|Verify no records returned|1|Enter Product Name|InvalidProduct123|No records found message displayed
+RIM-SRH-US-016|Verify search with special characters only|TC-US-016|Verify application handles invalid input|1|Enter search criteria|@@@@@|Validation message or no results displayed
+RIM-SRH-US-017|Verify blank search execution|TC-US-017|Verify behavior when no criteria entered|1|Leave all fields blank|N/A|System behaves per configuration and does not return unauthorized data
+RIM-SRH-US-018|Verify date range validation|TC-US-018|Verify end date earlier than start date|1|Enter Start Date|31-Dec-2025|Accepted
+RIM-SRH-US-018|Verify date range validation|TC-US-018|Verify end date earlier than start date|2|Enter End Date|01-Jan-2025|Validation error displayed
+RIM-SRH-US-019|Verify unauthorized application records are not returned|TC-US-019|Verify role-based security during search|1|Login as Viewer|Viewer credentials|Login successful
+RIM-SRH-US-019|Verify unauthorized application records are not returned|TC-US-019|Verify role-based security during search|2|Search restricted application|Restricted Application|No access to unauthorized records
+RIM-SRH-US-020|Verify search results display accurate metadata|TC-US-020|Verify ALCOA+ data accuracy|1|Search valid application|US NDA-123456|Application details match source data
+RIM-SRH-US-021|Verify search results are attributable|TC-US-021|Verify auditability of accessed records|1|Search application|US NDA-123456|Record access traceable through audit trail
+RIM-SRH-US-022|Verify search results remain contemporaneous|TC-US-022|Verify latest approved data displayed|1|Search recently updated application|Updated US Application|Current approved information displayed
+RIM-SRH-US-023|Verify search result integrity after metadata update|TC-US-023|Verify updated application searchable|1|Update Product Name|Updated Product Name|Update completed
+RIM-SRH-US-023|Verify search result integrity after metadata update|TC-US-023|Verify updated application searchable|2|Search using updated value|Updated Product Name|Application retrieved successfully
+RIM-SRH-US-024|Verify search performance for large US application dataset|TC-US-024|Verify acceptable response time|1|Execute search with broad criteria|Lead Market=United States|Results returned within validated performance limits
+RIM-SRH-US-025|Verify search activity complies with 21 CFR Part 11 controls|TC-US-025|Verify electronic record integrity|1|Perform application search|US NDA-123456|Search retrieves complete and unaltered electronic records
+RIM-SRH-US-026|Verify wildcard search functionality|TC-US-026|Verify partial Product Name search|1|Enter partial Product Name|Prod*|Matching application records displayed
+RIM-SRH-US-027|Verify search with mixed upper and lower case values|TC-US-027|Verify case-insensitive search|1|Enter product name in lowercase|product abc|Correct application records displayed
+RIM-SRH-US-028|Verify search export consistency|TC-US-028|Verify exported search results match displayed records|1|Search valid applications|Lead Market=United States|Results displayed
+RIM-SRH-US-028|Verify search export consistency|TC-US-028|Verify exported search results match displayed records|2|Export results|CSV/Excel|Exported data matches displayed search results
+Recommended Search Fields for US Application Search Validation
+In addition to Lead Market = United States, include validation for the following dependent fields:
+•	Application Number
+•	Application Name
+•	Product Name
+•	Product Family
+•	Application Type (NDA, ANDA, BLA, IND)
+•	Regulatory Objective
+•	Submission Number
+•	Submission Type
+•	Submission Subtype
+•	Submission Status
+•	Health Authority (FDA)
+•	Applicant Organization
+•	Application Owner
+•	Lifecycle Status
+•	Submission Date
+•	Approval Date
+•	Country
+•	Region
+•	Active/Inactive Status
+•	Archived Status
+These fields provide comprehensive coverage expected during a validated Veeva Vault RIM regression cycle while ensuring compliance with GxP, ALCOA+, and 21 CFR Part 11 requirements.
+
